@@ -1,0 +1,17 @@
+[package]
+name = "reusable_taproot_addresses"
+version = "0.0.1"
+edition = "2021"
+authors = ["w0xlt <https://github.com/w0xlt>"]
+description = "Reusable Taproot Addresses implementation"
+repository = "https://github.com/w0xlt/reusable-taproot-addresses"
+keywords = ["bitcoin", "taproot"]
+readme = "README.md"
+license = "CC0-1.0"
+
+[dependencies]
+secp256k1 = { git = "https://github.com/rust-bitcoin/rust-secp256k1.git", rev = "39e47fb64", features = [ "rand-std", "bitcoin_hashes", "std" ] }
+bech32 = "0.8.1"
+rand_chacha = "0.3.1"
+rand = "0.8.5"
+
