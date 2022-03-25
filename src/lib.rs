@@ -39,20 +39,15 @@ fn test_receiver_sender_same_destinations() {
         &sender_secret_key,
         &receiver_pub_key);
 
-    let sender_addresses = sender::generate_public_keys_to_send(
+    let master_xpub = sender::generate_master_extended_public_key(
         &relationship_seed,
         &receiver_pub_key);
 
-    let receive_addresses = receiver::generate_public_keys_to_watch(
+    let master_xpriv = receiver::generate_master_extended_private_key(
         &P_change_sender,
         &sender_pub_key,
         &receiver_secret_key);
 
-    let mut i = 0;
-
-    for sa in &sender_addresses {
-        let ra = receive_addresses.get(i).unwrap();
-        assert_eq!(sa.cmp(ra), Ordering::Equal);
-        i = i + 1;
-    }
+    let receiver_master_xpub = PublicKey::from_secret_key(&secp, &master_xpriv);
+    assert_eq!(receiver_master_xpub.cmp(&master_xpub), Ordering::Equal);
 }
